@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # pelican-bootstrap3
 
 This is a Bootstrap 3 theme for Pelican, originally developed by [DandyDev](https://github.com/DandyDev). 
@@ -310,8 +309,5 @@ If you want more examples of what you could do with this theme, have a [look her
 
 ![](screenshot-article.png)
 
-
-=======
 # PelicanBootstrap3-RU
 Руссификация темы Bootstrap3 для Pelican
->>>>>>> 987a7ed646babd6e3f663fa7a0a69e3aed7506c8
