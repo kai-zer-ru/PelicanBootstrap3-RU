@@ -102,7 +102,7 @@
 </head>
 <body>
 
-<div class="navbar {% if BOOTSTRAP_NAVBAR_INVERSE %}navbar-inverse{% else %}navbar-default{% endif %} navbar-fixed-top" role="navigation">
+<div class="navbar {% if BOOTSTRAP_NAVBAR_INVERSE %}navbar-inverse{% else %}navbar-default{% endif %} navbar-fixed-top" role="navigation" style="position:absolute;">
 	<div class="container{% if BOOTSTRAP_FLUID %}-fluid{% endif %}">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -118,9 +118,10 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                {% for title, link in MENUITEMS %}
+                <li><a href="{{ SITEURL }}">Главная</a></li>
+                <!-- {% for title, link in MENUITEMS %}
                     <li><a href="{{ link }}">{{ title }}</a></li>
-                {% endfor %}
+                {% endfor %} -->
                 {% if DISPLAY_PAGES_ON_MENU %}
                     {% for p in PAGES %}
                          <li><a href="{{ SITEURL }}/{{ p.url }}">
@@ -191,6 +192,11 @@
 </div>
 {% include 'includes/footer.html' %}
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-574fe9be30af38d0"></script>
+
+<script id="dsq-count-scr" src="//kaizer-666.disqus.com/count.js" async></script>
+
 <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -202,11 +208,15 @@
 {% if BANNER %}
     <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bodypadding.js"></script>
 {% endif %}
+    
 {% include 'includes/github-js.html' %}
 {% include 'includes/disqus_script.html' %}
 {% include 'includes/ga.html' %}
 {% include 'includes/piwik.html' %}
 
-{% block scripts %}{% endblock %}
+{% block scripts %}
+
+{% endblock %}
+
 </body>
 </html>

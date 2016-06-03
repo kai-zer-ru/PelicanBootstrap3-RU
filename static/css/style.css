@@ -60,6 +60,22 @@ body {
     hyphens: auto;
 }
 
+i.sidebar-social-links {
+    border-radius: 20%;
+    border: solid transparent 1px;
+    color: #A2A2A2;
+    font-size: 1.3em;
+    margin: 0;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    width: 12%;
+}
+i.sidebar-social-links:hover {
+    background-color: #A2A2A2;
+    color: #fff;
+}
+
 #sidebar a {
     color: inherit;
 }

@@ -4,19 +4,31 @@
     {% if DISPLAY_BREADCRUMBS %}
     <ol class="breadcrumb">
         <li><a href="{{ SITEURL }}" title="{{ SITENAME }}"><i class="fa fa-home fa-lg"></i></a></li>
-        <li class="active">Записи</li>
+        <li class="active">Все записи</li>
     </ol>
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <section id="content">
-        <h1>Записи сайта "{{ SITENAME }}"</h1>
-        <div id="archives">
+        <h1>Все записи</h1>
+
+        <div class="blog-archives">
+            {% set last_year = 0 %}
             {% for article in dates %}
-                <p>
-                    <span class="categories-timestamp"><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time></span>
-                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}{% if article.subtitle %} - {{ article.subtitle }}{% endif %}</a>
+                {% set year = article.date.strftime('%Y') %}
+                {%if last_year != year %}
+                    <h2 id="{{year }}"><a href="#{{year}}">{{ year }} год</a></h2>
+                    {% set last_year = year %}
+                {% endif %}
+                {% set next_year = 0 %}
+                {% if not loop.last %}
+                    {% set next = loop.index0 + 1 %}
+                    {% set next_article = dates[next] %}
+                    {% set next_year = next_article.date.strftime('%Y') %}
+                {% endif %}
+                <p><span class="categories-timestamp"><time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">{{ article.date.strftime('%d.%m.%Y') }}</time></span>
+                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }} {%if article.subtitle %} <small> {{ article.subtitle }} </small> {% endif %} </a>
                 </p>
             {% endfor %}
         </div>

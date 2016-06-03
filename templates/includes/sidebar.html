@@ -2,28 +2,56 @@
     {% set DISPLAY_TAGS_ON_SIDEBAR = True %}
 {% endif %}
 
-<section class="well well-sm">
+<section class="well well-sm" style="background-color: #ffffff;">
     <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">RSS лента</span></h4>
+            <p style="margin-left: 42px;">
+                <a href="http://feeds.feedburner.com/kai-zer-blog" title="Подписаться на обновления" rel="alternate" type="application/rss+xml" target="_blank">
+                    <img src="//feedburner.google.com/fb/images/pub/feed-icon32x32.png" alt="" style="border:0"/> 
+                </a>
+                <a href="http://feeds.feedburner.com/kai-zer-blog" target="_blank">
+                    <img src="http://feeds.feedburner.com/~fc/kai-zer-blog?bg=FFFF99&amp;fg=444444&amp;anim=1" height="26" width="88" style="border:0" alt="" />
+                </a>
+            </p>
+                <form style="padding:3px;text-align:center;" action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=kai-zer-blog', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+                    <p>
+                        <input id="feed-e-mail" type="text" style="width:140px" name="email" placeholder="Введитье свой E-Mail"/>
+                    </p>
+                    <input type="hidden" value="kai-zer-blog" name="uri"/>
+                    <input type="hidden" name="loc" value="ru_RU"/>
+                    <input type="submit" value="Подписаться" />
+                </form>
+            </li>
         {% if SOCIAL %}
-            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Связь с автором</span></h4>
-              <ul class="list-group" id="social">
-                {% for s in SOCIAL %}
-                    {% if s[2] %}
-                        {% set name_sanitized = s[2]|lower|replace('+','-plus')|replace(' ','-') %}
-                    {% else %}
-                        {% set name_sanitized = s[0]|lower|replace('+','-plus')|replace(' ','-') %}
-                    {% endif %}
-                    {% if name_sanitized in ['skype','github','youtube','odnoklassniki','twitter','flickr', 'spotify', 'stack-overflow', 'weibo', 'vk'] %}
-                        {% set iconattributes = '"fa fa-' ~ name_sanitized ~ ' fa-lg"' %}
-                    {% else %}
-                        {% set iconattributes = '"fa fa-' ~ name_sanitized ~ '-square fa-lg"' %}
-                    {% endif %}
-                <li class="list-group-item"><a href="{{ s[1] }}" target="_blank"><i class={{ iconattributes }}></i> {{ s[0] }}</a></li>
-                {% endfor %}
-              </ul>
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Контакты</span></h4>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <!-- <div class="addthis_vertical_follow_toolbox"></div> -->
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div class="addthis_horizontal_follow_toolbox"></div>
             </li>
         {% endif %}
-
+        {% if DISPLAY_SERIES_ON_SIDEBAR %}
+            {% if article %}
+                {% if article.series and (article.series.previous or article.series.next) %}
+                    <li class="list-group-item"><h4><i class="fa fa-tags fa-list-ul"></i><span class="icon-label">Серия статей</span></i></h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                            {% if article.series.previous %}
+                                <h5> <b>Предыдущая статья</b></h5>
+                                <a href="{{ SITEURL }}/{{ article.series.previous.url }}">{{ article.series.previous.title }}</a>
+                            {% endif %}
+                            </li>
+                            <li class="list-group-item">
+                            {% if article.series.next %}
+                                <h5><b>Следующая статья</b></h5>
+                                <a href="{{ SITEURL }}/{{ article.series.next.url }}">{{ article.series.next.title }}</a>
+                            {% endif %}
+                            </li>
+                        </ul>
+                    </li>
+                {% endif%}
+            {% endif %}
+        {% endif %}
         {% if DISPLAY_RECENT_POSTS_ON_SIDEBAR %}
             {% if RECENT_POST_COUNT is not defined %}
                 {% set RECENT_POST_COUNT = 5 %}
@@ -74,33 +102,28 @@
             </li>
         {% endif %}
 
-        {% if DISPLAY_SERIES_ON_SIDEBAR %}
-            {% if article %}
-                {% if article.series %}
-                    <li class="list-group-item"><h4><i class="fa fa-tags fa-list-ul"></i><span class="icon-label">Series</span></h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                            {% if article.series.previous %}
-                                <h5></i> Предыдущая запись</h5>
-                                <a href="{{ SITEURL }}/{{ article.series.previous.url }}">{{ article.series.previous.title }}</a>
-                            {% endif %}
-                            </li>
-                            <li class="list-group-item">
-                            {% if article.series.next %}
-                                <h5>Следующая запись</h5>
-                                <a href="{{ SITEURL }}/{{ article.series.next.url }}">{{ article.series.next.title }}</a>
-                            {% endif %}
-                            </li>
-                        </ul>
-                    </li>
-                {% endif%}
-            {% endif %}
-        {% endif %}
+        
 
         {% include 'includes/github.html' %}
         {% include 'includes/twitter_timeline.html' %}
         {% include 'includes/links.html' %}
         {% include 'includes/sidebar-images.html' %}
+
+        <li class="list-group-item">
+        {% if PROJECTS %}
+            <div id="projects">
+                <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Мои проекты</span></h4>
+                {% for project in PROJECTS %}
+                    <ul class="list-all-articles">
+                        <li>
+                            <a href="{{ project.url }}" title="{{ project.name }}">{{ project.name }}</a> 
+                            <span style="color: #999;font: .9em 'PT Sans', 'Helvetica Neue', Arial, Sans-Serif;">{{ project.description }}</span>
+                        </li>
+                    </ul>
+                {%endfor %}
+            </div>
+        {% endif %}
+        </li>
     </ul>
 </section>
 

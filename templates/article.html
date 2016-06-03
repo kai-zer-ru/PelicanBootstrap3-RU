@@ -77,6 +77,7 @@
                        title="Permalink to {{ article.title|striptags }}">
                         {{ article.title }}
                     </a>
+                    {%if article.subtitle %} <br/><small> {{ article.subtitle }} </small> {% endif %} 
                 </h1>
             </header>
             <div class="entry-content">
@@ -85,52 +86,66 @@
                         {% include "includes/article_info.html" %}
                     </div>
                 </div>
+                {% if article.toc %}
+                    <div class="span2 table-of-content">
+                        <nav>
+                        <h4>Содержание</h4>
+                        {{ article.toc }}
+                        </nav>
+                    </div>
+                    <hr/>
+                {% endif %}
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_sharing_toolbox"></div>
+                
                 {{ article.content }}
             </div>
-            <!-- /.entry-content -->
-            {% include 'includes/related-posts.html' %}
+
             {% include 'includes/series.html' %}
+            {% include 'includes/related-posts.html' %}
+
+            <section class="well" id="next-prev-posts">
+            <ul>
+             {% if article.prev_article %}
+                 <li>
+                 Предыдущая статья: 
+                     <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
+                         {{ article.prev_article.title }}
+                     </a>
+                 </li>
+             {% endif %}
+             {% if article.next_article %}
+                 <li>Следующая статья: 
+                     <a href="{{ SITEURL }}/{{ article.next_article.url}}">
+                         {{ article.next_article.title }}
+                     </a>
+                 </li>
+             {% endif %}
+            </ul>
+            </section>
+
+            <!-- {% if article.share_post and article.status != 'draft' %}
+            <section class="well" id="share">
+                <p id="post-share-links" style="margin-left: 217px;">
+                    <b>Поделиться:</b>
+                    <a href="{{article.share_post['vk']}}" target="_blank" title="ВКонтакте">ВКонтакте*</a>
+                    ❄
+                    <a href="{{article.share_post['twitter']}}" target="_blank" title="Twitter">Twitter</a>
+                    ❄
+                    <a href="{{article.share_post['facebook']}}" target="_blank" title="Facebook">Facebook</a>
+                    ❄
+                    <a href="{{article.share_post['google-plus']}}" target="_blank" title="Google+">Google+</a>
+                    ❄
+                    <a href="{{article.share_post['email']}}" target="_blank" title="Отправить по Email">Email</a>
+                </p>
+            </section>
+            {% endif %} -->
+            
             {% include 'includes/addthis.html' %}
             {% include 'includes/shariff.html' %}
             {% include 'includes/comments.html' %}
         </article>
     </section>
-
-<ul>
- {% if article.prev_article %}
-     <li>
-     Предыдущая статья: 
-         <a href="{{ SITEURL }}/{{ article.prev_article.url}}">
-             {{ article.prev_article.title }}
-         </a>
-     </li>
- {% endif %}
- {% if article.next_article %}
-     <li>Следующая статья: 
-         <a href="{{ SITEURL }}/{{ article.next_article.url}}">
-             {{ article.next_article.title }}
-         </a>
-     </li>
- {% endif %}
-</ul>
-
-
-{% if article.share_post and article.status != 'draft' %}
-<section>
-    <p id="post-share-links">
-        Поделиться:
-        <a href="{{article.share_post['vk']}}" target="_blank" title="ВКонтакте">ВКонтакте*</a>
-        ❄
-        <a href="{{article.share_post['twitter']}}" target="_blank" title="Twitter">Twitter</a>
-        ❄
-        <a href="{{article.share_post['facebook']}}" target="_blank" title="Facebook">Facebook</a>
-        ❄
-        <a href="{{article.share_post['google-plus']}}" target="_blank" title="Google+">Google+</a>
-        ❄
-        <a href="{{article.share_post['email']}}" target="_blank" title="Отправить по Email">Email</a>
-    </p>
-</section>
-{% endif %}
 
 {% if article.disqus_comments %}
 <div id="disqus_static_comments">
