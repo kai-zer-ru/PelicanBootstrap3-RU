@@ -1,22 +1,24 @@
-<footer>
+<footer class="foooooooter">
    <div class="container{% if BOOTSTRAP_FLUID %}-fluid{% endif %}">
-      <hr>
-      <div class="row">
+      <div class="row" id="footer">
          {% if articles %}
             {% set copy_date = articles[0].date.strftime('%Y') %}
          {% else %}
             {% set copy_date = '' %}
          {% endif %}
-         <div class="col-xs-10">&copy; {{ copy_date }} {{ AUTHOR }}
+         <div class="col-xs-10">
+         <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="Лицензия Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+            &copy; {{ copy_date }} {{ AUTHOR }}
             &middot; Создано с помощью <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">Pelican-Bootstrap3</a>,
             <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
-            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>.
             {%- if CC_LICENSE or CC_LICENSE_DERIVATIVES or CC_LICENSE_COMMERCIAL %}
               {% from 'includes/cc-license.html' import cc_license_mark %}
               <p><small>{{ cc_license_mark(cc_name=CC_LICENSE,derivatives=CC_LICENSE_DERIVATIVES,commercial=CC_LICENSE_COMMERCIAL,attr_markup=CC_ATTR_MARKUP,attr_props={'title':SITENAME,'name':article.author if article else AUTHOR,'url':SITEURL}) }}</small></p>
             {% elif CUSTOM_LICENSE %}
               <p><small>{{ CUSTOM_LICENSE }}</small></p>
             {% endif %}
+            Перевод темы: <a href="http://blog.kai-zer.ru" target="_blank">Максим Ковалёв</a>
          </div>
          <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Наверх</a></p></div>
       </div>

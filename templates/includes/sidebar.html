@@ -5,7 +5,7 @@
 <section class="well well-sm" style="background-color: #ffffff;">
     <ul class="list-group list-group-flush">
             <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">RSS лента</span></h4>
-            <p style="margin-left: 42px;">
+            <p>
                 <a href="http://feeds.feedburner.com/kai-zer-blog" title="Подписаться на обновления" rel="alternate" type="application/rss+xml" target="_blank">
                     <img src="//feedburner.google.com/fb/images/pub/feed-icon32x32.png" alt="" style="border:0"/> 
                 </a>
@@ -123,6 +123,36 @@
                 {%endfor %}
             </div>
         {% endif %}
+        </li>
+        <li class="list-group-item" id="metrics">
+            <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Счётчики</span></h4>
+            <div>
+            <!-- Yandex.Metrika informer --> <a href="https://metrika.yandex.ru/stat/?id=37661875&amp;from=informer" target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/37661875/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:37661875,lang:'ru'});return false}catch(e){}" /></a> <!-- /Yandex.Metrika informer --> <!-- Yandex.Metrika counter --> <script type="text/javascript"> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter37661875 = new Ya.Metrika({ id:37661875, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true, trackHash:true, ut:"noindex", ecommerce:"dataLayer" }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks"); </script> <!-- /Yandex.Metrika counter -->
+            </div>
+            <div id='Rambler-counter'>
+            <!-- Внимание! В этом div'е не нельзя размещать пользовательский контент: он будет затерт! -->
+            <noscript>
+            <a href="http://top100.rambler.ru/navi/4428360/">
+              <img src="http://counter.rambler.ru/top100.cnt?4428360" alt="Rambler's Top100" border="0" />
+            </a>
+            </noscript>
+            </div>
+
+            <!-- Код скрипта должен быть размещен строго ниже контейнера для логотипа (div c id='Rambler-counter') -->
+            <script type="text/javascript">
+            var _top100q = _top100q || [];
+            _top100q.push(['setAccount', '4428360']);
+            _top100q.push(['trackPageviewByLogo', document.getElementById('Rambler-counter')]);
+
+            (function(){
+              var pa = document.createElement("script"); 
+              pa.type = "text/javascript"; 
+              pa.async = true;
+              pa.src = ("https:" == document.location.protocol ? "https:" : "http:") + "//st.top100.ru/top100/top100.js";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(pa, s);
+            })();
+            </script>
         </li>
     </ul>
 </section>

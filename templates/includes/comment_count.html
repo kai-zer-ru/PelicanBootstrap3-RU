@@ -1,6 +1,6 @@
 <!-- {% if DISQUS_SITENAME and DISQUS_DISPLAY_COUNTS %} -->
 	<p id="countcomments">
-		<a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" 
+		<a class="btn btn-default btn-xs" href="{{ SITEURL }}/{{ article.url }}#disqus_thread" 
 				data-disqus-identifier="{{ article.date|strftime('%Y-%m-') ~ article.slug if DISQUS_ID_PREFIX_SLUG else article.slug }}">
 				&nbsp;
 		</a>
